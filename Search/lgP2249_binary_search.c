@@ -1,7 +1,7 @@
 #include<stdio.h>
 //遍历正常情况下都是实质与核心，那这种情况下，算法的实质与核心就在于完成遍历的效率！
 int a[1000005];//n最大10的六次方，开大点，多五个&全局数组哈哈~3
-int binarySearch(int target,int n){
+int binarySearch(int target,int n){//数组a要先于声明的原因也是因为它的参数设计里没有数组a,但里面又要用a，
 	int left=1,right=n;
 	int ans=-1;
 	while(left<=right){//left与right交汇的那一刻，遍历已经完成了，客观事实
@@ -19,7 +19,7 @@ int binarySearch(int target,int n){
 	}
  return ans;//循环遍历结束再返回答案，便能确保是第一次出现的位置哈哈！	//return -1;//循环结束，完成遍历，找不到那就是找不到
 }
-//注意程序执行顺序啊，老忘多多注意！！
+//注意程序执行顺序啊，老忘多多注意！！不然不认识！！
 //你把 int a[1000005]; 写在了 binarySearch 的后面。C 语言是严格从上往下读的，binarySearch 里用到的 a，必须在这个函数之前被声明
 
 
