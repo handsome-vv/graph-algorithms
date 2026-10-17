@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+
+
+int main(){
+char str[258];//还要注意留个位置给终止符哦，好像用循环对数组赋值，系统会自动添加终止符，自己一个个赋值就要记得自己手动添加终止符哦~~，因为空格也是字符，没有终止符，字符串无法确定，这是约科实也是实需！！
+int top=-1;
+char Stack[22];
+
+scanf("%s",str);
+int len=strlen(str);
+//凡是左括号则入栈，遇到右括号则栈弹出，判断匹配，注意判空和判满哦，因为左括号先出现，所以左括号入！哈哈！！
+//但是这里只有单一圆括号，处理应该更简单
+for(int i=0;i<len;i++){
+	if(str[i]=='('){
+		Stack[++top]=str[i];//注意栈指针的初始值影响入栈和出栈的操作哦~
+	}
+	if(str[i]==')'){
+		if(top==-1) {
+			printf("NO\n");
+			return 0;
+		}
+		top--;
+	}
+}
+if(top==-1){
+	printf("YES\n");
+}
+else{
+	printf("NO\n");
+}
+
+    return 0;
+}
