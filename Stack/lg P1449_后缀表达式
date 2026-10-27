@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<string.h>
+
+int main(){
+	char str[100];
+	int Stack[100];
+	int top=-1;
+	scanf("%s",str);
+	int len=strlen(str);
+	int a,b;
+	int num=0;//用来存要压入栈的数字，字符型是最低级的，实质还是整型的ASCII码，参与运算时（参与运算的数据类型是统一的！科学设计！）自动转换，统一为最高级的数据类型！约科实！！
+	//另外补充，浮点型高级于整型哦~
+	//所以开辟的是字符型数组，最好最能保证数据输入获取的完整与精确！后续再来点小处理，中介哈哈，轻松转换~（这里即是int num）呐，因为我们的实需，我们要的是一个整型的运算结果
+	//所以int num!
+	for(int i=0;i<len;i++){
+		if('0'<=str[i]&&str[i]<='9'){
+			num=num*10+str[i]-'0';//因为条件下的客观事实，每个不同的数字之间是用'.'隔开的，确保每一个数都完整，所以注意数位哦~,好好分析，好好运用感性材料！这是第一步！
+			//那都是一步步来的！量变到质变！MARX意义！！
+		}
+		else if(str[i]=='.'){//入栈！我们只要数字入栈，这里明确问题导向就知数字是我们的主矛！MARX!所以着重于主矛，先把数字一个一个分离出来，拎清了！再来应对相应的运算！
+			//哈哈！两点论与重点论！MARX意义！那存和获取，那就优先保证完整精确的存进来嘛，所以给它原原本本的存进来，存好了存在一起，但实需是肯定不够用的嘛，所以我们 MARX 好好处理哈哈！
+			Stack[++top]=num;
+			num=0;//别忘了哦，要存下一个数据了！数据的精准与准确是Key!是实需！！MARX意义！！
+		}
+		else if(str[i]=='+'){
+			b=Stack[top--];
+			a=Stack[top--];
+			//num=a+b;这样是错的！num还要用来存原数组要压入栈的数字的，你看，你没有重置为0！污染数据导致错误！！
+			Stack[++top]=a+b;
+		}
+			else if(str[i]=='-'){
+			b=Stack[top--];
+			a=Stack[top--];
+			//num=a-b;
+			Stack[++top]=a-b;
+		}
+			else if(str[i]=='*'){
+			b=Stack[top--];
+			a=Stack[top--];
+			//num=a*b;
+			Stack[++top]=a*b;
+		}
+			else if(str[i]=='/'){
+			b=Stack[top--];
+			a=Stack[top--];
+			//num=a/b;
+			Stack[++top]=a/b;
+		}
+		else if(str[i]=='@') break;
+		
+	}
+	printf("%d\n",Stack[top]);
+	
+	return 0;
+}
