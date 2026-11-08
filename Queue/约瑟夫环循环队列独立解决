@@ -1,0 +1,25 @@
+#include<stdio.h>
+#define MAX 105
+
+int main(){
+	int front=0,rear=0;
+	int e;
+	int Queue[MAX];
+	int m,n;
+	scanf("%d %d",&n,&m);
+	for(int i=1;i<=n;i++){
+		Queue[(front++)%MAX]=i;
+		
+	}
+	while(rear!=front){//满即 (rear+1)%MAX==front 牺牲的即是一个尾指针指向的空间，头进尾出，“双指针” 控制的数组即为队列， %MAX 即实现循环，即循环队列
+		for(int i=1;i<m;i++){
+			e=Queue[(rear++)%MAX];
+			Queue[(front++)%MAX]=e;
+		}
+		e=Queue[(rear++)%MAX];
+		printf("%d ",e);
+		
+	}
+	
+	return 0;
+}
